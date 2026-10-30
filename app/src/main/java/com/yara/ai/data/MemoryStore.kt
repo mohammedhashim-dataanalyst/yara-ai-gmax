@@ -136,7 +136,7 @@ class MemoryStore private constructor(ctx: Context) {
             if (learned.size > 5000) {
                 // drop oldest arbitrary entries when huge
                 val keep = learned.entries.takeLast(4000)
-                learned = keep.associate { it.key to it.value }.toMutableMap()
+                learned = keep.associate { entry -> entry.key to entry.value }.toMutableMap()
             }
             writeMap(learnedFile, learned)
         }
